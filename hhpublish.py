@@ -1,5 +1,28 @@
 #!/usr/bin/env python3
 
+"""
+Tool for easy publishing articles from a source directory to Jekyll based
+website.
+
+This tool converts *.docx files within source directory to Jekyll conformed
+posts in a target directory.
+
+Usage:
+
+    ./hhpublish.py --help   Check for usage information.
+    ./hhpublish.py <sourcedir> <outputdir>
+                            Converts any *.docx file in <sourcedir> to a
+                            corresponding file in <outputdir>.
+
+During conversion:
+
+1. Embedded images of docx will be stored inline as Data URLs in HTML.
+2. Only modified source file will be converted. Any file in target directory
+   that does not match a source file will be deleted. This is done by
+   corresponding source files' hash digests with target filenames.
+
+"""
+
 import os
 import argparse
 import hashlib
