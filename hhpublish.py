@@ -117,9 +117,9 @@ def decorate_html(text):
         raise Exception("元数据表格定义错误。")
     
     for key, value in rawdata:
-        if key in ['标题', 'title']:
+        if key in ['标题', 'title', 'titel']:
             metadata['title'] = value
-        elif key in ['作者', 'author']:
+        elif key in ['作者', 'author', 'autor']:
             metadata['author'] = value
 
 
