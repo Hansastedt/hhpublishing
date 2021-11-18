@@ -123,7 +123,7 @@ def decorate_html(text):
         elif key in ['作者', 'author', 'autor']:
             metadata['author'] = value
         elif key in ['分类', 'category', 'categories']:
-            metadata['categories'].apend(value)
+            metadata['categories'].append(value.lower().strip())
 
     metadata["categories"] = list(set(metadata["categories"]))
 
