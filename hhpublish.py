@@ -128,6 +128,9 @@ def decorate_html(text):
                 metadata['date'] = value
         elif key in ['分类', 'category', 'categories']:
             metadata['categories'].append(value.lower().strip())
+        elif key in ['permalink']:
+            # others
+            metadata[key] = value
 
     metadata["categories"] = list(set(metadata["categories"]))
 
