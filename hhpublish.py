@@ -23,6 +23,7 @@ During conversion:
 
 """
 
+import re
 import os
 import argparse
 import hashlib
@@ -122,6 +123,9 @@ def decorate_html(text):
             metadata['title'] = value
         elif key in ['作者', 'author', 'autor']:
             metadata['author'] = value
+        elif key in ['日期', 'date', 'datum']:
+            if re.match('[0-9]{4}\-[0-9]{1,2}\-[0-9]{1,2}', value):
+                metadata['date'] = value
         elif key in ['分类', 'category', 'categories']:
             metadata['categories'].append(value.lower().strip())
 
