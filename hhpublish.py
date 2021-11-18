@@ -90,6 +90,7 @@ def convert(path):
 def decorate_html(text):
     metadata = {
         "layout": "default",
+        "categories": [],
     }
     htmldoc = BeautifulSoup(text, 'html.parser')
 
@@ -121,7 +122,10 @@ def decorate_html(text):
             metadata['title'] = value
         elif key in ['作者', 'author', 'autor']:
             metadata['author'] = value
+        elif key in ['分类', 'category', 'categories']:
+            metadata['categories'].apend(value)
 
+    metadata["categories"] = list(set(metadata["categories"]))
 
     first_table.decompose()
     return ("""
@@ -134,7 +138,7 @@ def decorate_html(text):
 
 sourcelist = [
     e for e in os.listdir(args.sourcedir)
-    if e.lower().endswith(".docx")
+    if e.lower().endswith(".docx") and not e.startswith("~")
 ]
 
 targetlist = [
